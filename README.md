@@ -9,7 +9,7 @@
 
 > A full **end-to-end machine learning web application** that predicts the likelihood of diabetes in a patient based on key health diagnostics — from model training to a live Flask deployment.
 
-[🔙 Back to Main Repository](https://github.com/shsarv/Machine-Learning-Projects)
+[View on GitHub](https://github.com/sanchit3939/Diabetes-Prediction)
 
 </div>
 
