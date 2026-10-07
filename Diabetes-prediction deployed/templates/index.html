@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Health Risk Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="brand-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      AI Healthcare Diagnostic
+    </div>
+    <h1>Diabetes Risk Assessment</h1>
+    <p>Enter patient clinical metrics below to compute diabetes risk probability using Machine Learning</p>
+  </header>
+
+  <main class="main-container">
+    <div class="card">
+      <form action="{{ url_for('predict') }}" method="post">
+        <div class="form-grid">
+          
+          <div class="input-group">
+            <label class="input-label" for="pregnancies">
+              <span>Pregnancies</span>
+              <span class="unit">Count</span>
+            </label>
+            <input type="number" id="pregnancies" name="pregnancies" class="form-control" min="0" max="25" placeholder="e.g. 0" required>
+            <span class="input-hint">Total number of pregnancies</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="glucose">
+              <span>Glucose Level</span>
+              <span class="unit">mg/dL</span>
+            </label>
+            <input type="number" id="glucose" name="glucose" class="form-control" min="0" max="300" placeholder="e.g. 120" required>
+            <span class="input-hint">Plasma glucose concentration (2 hr in OGTT)</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="bloodpressure">
+              <span>Blood Pressure</span>
+              <span class="unit">mmHg</span>
+            </label>
+            <input type="number" id="bloodpressure" name="bloodpressure" class="form-control" min="0" max="200" placeholder="e.g. 80" required>
+            <span class="input-hint">Diastolic blood pressure</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="skinthickness">
+              <span>Skin Thickness</span>
+              <span class="unit">mm</span>
+            </label>
+            <input type="number" id="skinthickness" name="skinthickness" class="form-control" min="0" max="100" placeholder="e.g. 20" required>
+            <span class="input-hint">Triceps skin fold thickness</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="insulin">
+              <span>Insulin Level</span>
+              <span class="unit">IU/mL</span>
+            </label>
+            <input type="number" id="insulin" name="insulin" class="form-control" min="0" max="900" placeholder="e.g. 85" required>
+            <span class="input-hint">2-Hour serum insulin</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="bmi">
+              <span>Body Mass Index (BMI)</span>
+              <span class="unit">kg/m²</span>
+            </label>
+            <input type="number" step="0.1" id="bmi" name="bmi" class="form-control" min="0" max="70" placeholder="e.g. 24.5" required>
+            <span class="input-hint">Weight in kg / (height in m)²</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="dpf">
+              <span>Diabetes Pedigree Function</span>
+              <span class="unit">Score</span>
+            </label>
+            <input type="number" step="0.001" id="dpf" name="dpf" class="form-control" min="0" max="3" placeholder="e.g. 0.47" required>
+            <span class="input-hint">Genetic predisposition score</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="age">
+              <span>Age</span>
+              <span class="unit">Years</span>
+            </label>
+            <input type="number" id="age" name="age" class="form-control" min="1" max="120" placeholder="e.g. 33" required>
+            <span class="input-hint">Patient age in years</span>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Analyze Diabetes Risk
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>Diabetes Risk Predictor &bull; Machine Learning Mini Project &bull; Group 2</p>
+  </footer>
+
+</body>
+</html>

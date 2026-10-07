@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Results | Diabetes Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="brand-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Diagnostic Result
+    </div>
+    <h1>Assessment Summary</h1>
+  </header>
+
+  <main class="main-container">
+    <div class="card result-card">
+      {% if prediction == 1 %}
+        <!-- Positive / High Risk Result -->
+        <div class="result-badge danger">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h2 class="result-title danger">Diabetes Risk Detected</h2>
+        <p class="result-desc">Based on the provided medical markers, the predictive model indicates a high probability of diabetes. Please consult a medical professional for further clinical diagnostics.</p>
+
+        <div class="result-img-container">
+          <img src="{{ url_for('static', filename='diabetes.webp') }}" alt="Diabetes Risk Alert Illustration">
+        </div>
+
+      {% else %}
+        <!-- Negative / Low Risk Result -->
+        <div class="result-badge safe">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2 class="result-title safe">Low Diabetes Risk Detected</h2>
+        <p class="result-desc">Great news! The model indicates a low risk of diabetes based on your input parameters. Continue maintaining a balanced diet and regular physical activity.</p>
+
+        <div class="result-img-container">
+          <img src="{{ url_for('static', filename='no-diabetes.webp') }}" alt="Healthy Lifestyle Illustration">
+        </div>
+      {% endif %}
+
+      {% if inputs %}
+      <!-- Input Values Summary -->
+      <div class="summary-box">
+        <h3 class="summary-title">Evaluated Metrics</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="label">Glucose Level</span>
+            <span class="val">{{ inputs.glucose }} mg/dL</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Blood Pressure</span>
+            <span class="val">{{ inputs.bloodpressure }} mmHg</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">BMI</span>
+            <span class="val">{{ inputs.bmi }} kg/m²</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Insulin</span>
+            <span class="val">{{ inputs.insulin }} IU/mL</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Skin Thickness</span>
+            <span class="val">{{ inputs.skinthickness }} mm</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Pregnancies</span>
+            <span class="val">{{ inputs.pregnancies }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">DPF Score</span>
+            <span class="val">{{ inputs.dpf }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Age</span>
+            <span class="val">{{ inputs.age }} yrs</span>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div style="margin-top: 24px;">
+        <a href="{{ url_for('home') }}" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Perform Another Assessment
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Diabetes Risk Predictor &bull; Machine Learning Mini Project &bull; Group 2</p>
+  </footer>
+
+</body>
+</html>
